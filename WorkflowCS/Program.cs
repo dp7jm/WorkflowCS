@@ -10,23 +10,26 @@ namespace WorkflowCS
     {
         public interface IActivity
         {
-             void ExecuteA();
+             void Execute();
         }
 
         public class WorkflowEngine {
-            private List<IActivity> _activies;
+            private List<IActivity> _activities;
 
 
             public void Run()
-            {   
-
+            {
+                for (int i = 0; i < _activities.Count; i++)
+                {
+                    _activities[i].Execute();
+                }
 
 
             }
         }
         public class UploadCloudStorage : IActivity
         {
-            public void ExecuteA()
+            public void Execute()
             {
                 Console.WriteLine("uploding image");
 
@@ -34,14 +37,14 @@ namespace WorkflowCS
         }
         public class CallWebService : IActivity
         {
-            public void ExecuteA()
+            public void Execute()
             {
                 Console.WriteLine("casll web service"); 
             }
         }
         public class SendEmail : IActivity
         {
-            public void ExecuteA()
+            public void Execute()
             {
                 Console.WriteLine("sednig e-mail your video is uploding"); ;
             }
